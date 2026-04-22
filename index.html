@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Kitchen Ami &mdash; Everyday Kitchen Essentials</title>
+<meta name="description" content="Practical kitchen gadgets for the modern home. Clean design, trusted materials, shipped worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══ RESET ══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF8;--white:#fff;--ink:#1A1A1A;--muted:#6E6B66;
+  --warm:#F5F0EB;--border:#E8E0D8;
+  --red:#C8402A;--red-dk:#A83520;--red-lt:#FDF1EE;
+  --green:#2E6B4F;
+  --sh:0 2px 16px rgba(0,0,0,.08);--sh-lg:0 8px 40px rgba(0,0,0,.12);
+  --r:10px;--r-lg:16px;--max:1200px;--hh:64px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:none;outline:none;background:none}
+a{text-decoration:none;color:inherit;cursor:pointer}
+img{display:block;max-width:100%;height:auto}
+ul{list-style:none}
+input,select,textarea{font-family:inherit}
+
+/* ══ PAGES ══ */
+.page{display:none}.page.active{display:block;flex:1}.page.active{display:block}
+
+/* ══ TOPBAR ══ */
+.topbar{background:#111;color:#aaa;font-size:12px;padding:7px 0;text-align:center}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;max-width:var(--max);margin:0 auto;padding:0 20px}
+@media(max-width:600px){.topbar-inner{justify-content:center;gap:6px 20px}}
+
+/* ══ HEADER ══ */
+header{position:sticky;transition:box-shadow .3s;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);height:var(--hh)}
+header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.hdr{max-width:var(--max);margin:0 auto;padding:0 20px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0}
+.logo-mk{width:36px;height:36px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff}
+.logo-tx{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;letter-spacing:-.3px}
+.main-nav{display:flex;gap:24px}
+.main-nav a{font-size:14px;font-weight:500;color:var(--muted);transition:color .2s}
+.main-nav a:hover,.main-nav a.act{color:var(--ink)}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.cart-btn{position:relative;background:var(--ink);color:#fff;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;transition:background .2s;white-space:nowrap}
+.cart-btn:hover{background:#333}
+.cart-badge{background:var(--red);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+
+/* ══ MOBILE NAV ══ */
+.mob-nav{display:none;flex-direction:column;background:#fff;border-bottom:1px solid var(--border);padding:8px 0}
+.mob-nav.open{display:flex}
+.mob-nav a{padding:12px 20px;font-size:15px;font-weight:500;border-bottom:1px solid var(--border)}
+.mob-nav a:last-child{border-bottom:none}
+
+/* ══ UTILS ══ */
+.container{max-width:var(--max);margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 26px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:.2s;font-family:inherit;gap:6px}
+.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:var(--red-dk)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--border)}.btn-ghost:hover{background:var(--warm);border-color:#ccc}
+.btn-ink{background:var(--ink);color:#fff}.btn-ink:hover{background:#333}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);text-align:center;margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;text-align:center;margin-bottom:6px;line-height:1.2}
+.sec-sub{color:var(--muted);text-align:center;font-size:15px;margin-bottom:36px}
+
+/* ══ HERO ══ */
+.hero{padding:60px 0 56px;background:linear-gradient(140deg,#FDF7F3 0%,#EFE8E1 100%)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.hero h1{font-family:'Playfair Display',serif;font-size:48px;line-height:1.08;margin-bottom:18px;letter-spacing:-.5px}
+.hero h1 em{color:var(--red);font-style:italic}
+.hero-sub{color:var(--muted);font-size:16px;margin-bottom:28px;max-width:420px;line-height:1.65}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.hero-img-col{position:relative}
+.hero-img{border-radius:20px;overflow:hidden;aspect-ratio:1;background:var(--warm);border:1px solid var(--border);box-shadow:var(--sh-lg);min-height:280px}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-badge{position:absolute;bottom:-12px;left:-12px;background:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,.12);display:flex;align-items:center;gap:10px;font-size:13px}
+.hero-badge-icon{font-size:24px}
+.hero-badge strong{display:block;font-weight:700;color:var(--ink);font-size:14px}
+.hero-badge span{color:var(--muted);font-size:12px}
+
+/* ══ TRUST BAR ══ */
+
+
+.trust-bar{background:var(--ink);color:#b0aba6;padding:12px 0}
+.trust-bar-inner{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:8px 16px}
+.trust-item{font-size:12px;font-weight:500;display:flex;align-items:center;gap:6px}
+
+/* ══ WHY SECTION ══ */
+.why-sec{padding:72px 0}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
+.why-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 20px;text-align:center;transition:box-shadow .25s,transform .25s}
+.why-card:hover{box-shadow:var(--sh-lg);transform:translateY(-3px)}
+.why-icon{font-size:32px;margin-bottom:12px}
+.why-title{font-weight:700;font-size:14px;margin-bottom:6px}
+.why-desc{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ══ SHOP FILTERS ══ */
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+#filter-pills button{padding:7px 18px;border:1.5px solid var(--border);border-radius:30px;font-size:13px;cursor:pointer;transition:.2s;background:#fff;color:var(--muted);font-family:inherit;font-weight:500}
+#filter-pills button:hover{background:var(--warm)}
+#filter-pills button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* ══ PRODUCT GRID ══ */
+.prod-sec{padding:72px 0}
+.prod-sec.bg-warm{background:var(--warm);padding:60px 0}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.product-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;transition:box-shadow .28s,transform .28s}
+.product-card:hover{box-shadow:var(--sh-lg);transform:translateY(-4px)}
+.prod-img-wrap{position:relative;aspect-ratio:1;overflow:hidden;background:var(--warm)}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.product-card:hover .prod-img-wrap img{transform:scale(1.05)}
+.p-badge{position:absolute;top:10px;left:10px;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.5px;z-index:1}
+.badge-best{background:#FFF3CD;color:#856404}
+.badge-sale{background:#FEE2E2;color:#991B1B}
+.badge-new{background:#D1FAE5;color:#065F46}
+.prod-body{padding:14px 16px 16px}
+.p-cat{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:600}
+.p-name{font-weight:600;font-size:13px;margin-bottom:6px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.p-stars{font-size:11px;color:#F59E0B;margin-bottom:10px}
+.p-stars small{color:var(--muted)}
+.p-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.p-prices{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+.price-old{font-size:11px;color:var(--muted);text-decoration:line-through}
+.price-main{font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
+.add-btn{background:var(--red);color:#fff;padding:7px 13px;border-radius:6px;font-size:12px;font-weight:600;transition:background .2s;white-space:nowrap;flex-shrink:0}
+.add-btn:hover,.add-btn.added{background:var(--green)}
+
+/* ══ PRODUCT DETAIL ══ */
+.pd-page{padding:32px 0 60px}
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:24px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.pd-img-col{position:sticky;top:calc(var(--hh)+16px)}
+.pd-main{background:var(--warm);border-radius:var(--r-lg);aspect-ratio:1;overflow:hidden;border:1px solid var(--border);position:relative;display:flex;align-items:center;justify-content:center;font-size:72px;margin-bottom:10px}
+.pd-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pd-thumbs{display:flex;gap:8px;flex-wrap:wrap}
+.pd-thumb{width:68px;height:68px;border-radius:8px;border:2px solid transparent;overflow:hidden;cursor:pointer;background:var(--warm);flex-shrink:0;transition:border-color .2s}
+.pd-thumb.act{border-color:var(--red)}
+.pd-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pd-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px}
+.pd-name{font-family:'Playfair Display',serif;font-size:26px;line-height:1.2;margin-bottom:10px}
+.pd-stars{color:#F59E0B;margin-bottom:14px;font-size:13px;display:flex;align-items:center;gap:6px}
+.pd-stars small{color:var(--muted);font-size:12px}
+.pd-price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.pd-price{font-family:'Playfair Display',serif;font-size:34px;font-weight:700}
+.pd-old{font-size:16px;color:var(--muted);text-decoration:line-through}
+.pd-save{background:#EBF4EF;color:var(--green);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
+.pd-usps{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0;padding:12px 16px;background:var(--warm);border-radius:8px}
+.pd-usps span{font-size:12px;display:flex;align-items:center;gap:4px;font-weight:500;color:var(--muted)}
+.pd-qty{display:flex;align-items:center;gap:10px;margin:18px 0}
+.qty-btn{width:36px;height:36px;border-radius:8px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;background:#fff;font-weight:600;transition:.2s}
+.qty-btn:hover{background:var(--warm)}
+.pd-add{flex:1;max-width:220px;background:var(--red);color:#fff;padding:13px 20px;border-radius:8px;font-size:14px;font-weight:700;transition:background .2s;cursor:pointer;border:none;font-family:inherit}
+.pd-add:hover{background:var(--red-dk)}
+.pay-logos{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}
+/* Tabs */
+.tab-btns{display:flex;border-bottom:2px solid var(--border);gap:0;margin:24px 0 20px}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted);border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s}
+.tab-btn.act{color:var(--red);border-bottom-color:var(--red)}
+.tab-pane{display:none}.tab-pane.act{display:block}
+.desc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.desc-block{background:var(--warm);border-radius:8px;padding:16px}
+.desc-block h4{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--ink)}
+.desc-block li{font-size:13px;color:var(--muted);padding:3px 0 3px 14px;position:relative;line-height:1.45}
+.desc-block li::before{content:'•';position:absolute;left:0;color:var(--red)}
+/* Sticky mobile add-to-cart */
+@media(max-width:768px){}
+/* ══ CART ══ */
+.cart-page{padding:40px 0 calc(60px + var(--safe-b))}
+.cart-grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.cart-box{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.cart-box-hd,.cart-box-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--warm)}
+.cart-box-hd h1,.cart-box-head h1{font-family:'Playfair Display',serif;font-size:20px}
+.cart-box-hd span,.cart-box-head span{font-size:13px;color:var(--muted)}
+.cart-item{display:flex;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);align-items:flex-start}
+.cart-item:last-child{border-bottom:none}
+.ci-img{width:72px;height:72px;background:var(--warm);border-radius:8px;overflow:hidden;border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px}
+.ci-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ci-info{flex:1;min-width:0}
+.ci-name{font-size:13px;font-weight:600;margin-bottom:4px;line-height:1.3}
+.ci-price{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--red);margin-bottom:8px}
+.ci-qty{display:flex;align-items:center;gap:8px}
+.ciq-btn{width:28px;height:28px;border-radius:6px;background:var(--warm);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
+.ciq-btn:hover{background:var(--border)}
+.ciq-val{font-size:13px;font-weight:600;min-width:18px;text-align:center}
+.ci-rm{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px;transition:color .2s;flex-shrink:0;margin-top:2px}
+.ci-rm:hover{color:var(--red)}
+.cart-empty{text-align:center;padding:56px 20px}
+.cart-empty-icon{font-size:56px;margin-bottom:14px}
+.cart-empty h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px}
+.cart-empty p{color:var(--muted);margin-bottom:24px;font-size:14px}
+/* Cart Summary */
+.cart-sum{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);position:sticky;top:calc(var(--hh)+16px)}
+.cart-sum-hd{padding:16px 18px;border-bottom:1px solid var(--border);font-weight:700;font-size:14px;background:var(--warm);border-radius:var(--r-lg) var(--r-lg) 0 0}
+.cart-sum-body{padding:18px}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;color:var(--muted)}
+.sum-row span:last-child{font-weight:500;color:var(--ink)}
+.sum-divider{border:none;border-top:1px solid var(--border);margin:10px 0}
+.sum-total{display:flex;justify-content:space-between;font-size:16px;font-weight:700;padding:10px 0;border-top:2px solid var(--ink);margin-top:4px}
+.cart-co-btn{width:100%;background:var(--red);color:#fff;padding:14px;border-radius:8px;font-size:14px;font-weight:700;margin-top:14px;cursor:pointer;border:none;font-family:inherit;transition:background .2s}
+.cart-co-btn:hover{background:var(--red-dk)}
+.cart-cont-btn{width:100%;background:transparent;color:var(--muted);padding:8px;font-size:13px;margin-top:6px;cursor:pointer;border:none;font-family:inherit}
+.cart-cont-btn:hover{color:var(--ink)}
+.cart-secure{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:4px}
+.cart-pay{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+
+/* ══ CHECKOUT ══ */
+.co-page{padding:40px 0 calc(60px + var(--safe-b))}
+.co-grid{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+.co-col{display:flex;flex-direction:column;gap:16px}
+.co-box{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.co-box-title{padding:13px 20px;border-bottom:1px solid var(--border);font-weight:700;font-size:13px;background:var(--warm);display:flex;align-items:center;gap:8px}
+.co-box-body{padding:20px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cc-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.field{margin-bottom:12px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.field input,.field select{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;background:#fff;transition:border .2s;-webkit-appearance:none;appearance:none}
+.field input:focus,.field select:focus{outline:none;border-color:var(--ink)}
+.tc-row{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--red-lt);border-radius:8px;font-size:12.5px;margin-top:4px;line-height:1.5}
+.tc-row input[type=checkbox]{width:16px;height:16px;margin-top:2px;cursor:pointer;flex-shrink:0;accent-color:var(--red)}
+.submit-btn{width:100%;background:var(--red);color:#fff;padding:15px;border-radius:8px;font-size:15px;font-weight:700;margin-top:16px;cursor:pointer;border:none;font-family:inherit;transition:background .2s}
+.submit-btn:hover{background:var(--red-dk)}
+.co-sum-sticky{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);position:sticky;top:calc(var(--hh)+16px)}
+.co-sum-head{padding:14px 18px;border-bottom:1px solid var(--border);font-weight:700;font-size:13px;background:var(--warm);border-radius:var(--r-lg) var(--r-lg) 0 0}
+.co-sum-body{padding:18px}
+.co-line{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;color:var(--muted)}
+.co-line span:last-child{font-weight:500;color:var(--ink)}
+.co-total-row{display:flex;justify-content:space-between;font-size:16px;font-weight:700;padding:10px 0;border-top:2px solid var(--ink);margin-top:6px}
+.co-secure{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:4px}
+.confirm-wrap{text-align:center;padding:60px 20px}
+.confirm-wrap h2{font-family:'Playfair Display',serif;font-size:30px;margin-bottom:12px}
+.confirm-wrap p{color:var(--muted);margin-bottom:8px}
+
+/* ══ STATIC PAGES ══ */
+.static-wrap{max-width:760px;margin:0 auto;padding:56px 20px 80px}
+.static-wrap h1{font-family:'Playfair Display',serif;font-size:30px;margin-bottom:24px}
+.static-wrap h2{font-size:16px;font-weight:700;margin:24px 0 8px}
+.static-wrap p,.static-wrap li{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:6px}
+.static-wrap table{width:100%;border-collapse:collapse;margin:14px 0}
+.static-wrap th,.static-wrap td{padding:9px 13px;border:1px solid var(--border);font-size:13px;text-align:left}
+.static-wrap th{background:var(--warm);font-weight:700}
+
+/* ══ CONTACT ══ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:56px 0}
+.contact-form textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;min-height:110px;transition:border .2s}
+.contact-form textarea:focus{outline:none;border-color:var(--ink)}
+.ci-info-item{display:flex;gap:12px;margin-bottom:18px;align-items:flex-start}
+.ci-icon{width:38px;height:38px;background:var(--warm);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+
+/* ══ FOOTER ══ */
+footer{background:#111;color:#888;padding:56px 0 0}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-logo{font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.foot-logo .mk{width:28px;height:28px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.foot-desc{font-size:12px;line-height:1.6;max-width:240px}
+.foot-col h4{color:#ddd;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+.foot-links li{margin-bottom:7px}
+.foot-links a{font-size:13px;color:#888;transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-contact p{font-size:12px;margin-bottom:5px;line-height:1.5}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding:16px 0 calc(16px + var(--safe-b));display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.foot-copy{font-size:11px}
+.foot-pay{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+
+/* ══ TOAST ══ */
+.toast{position:fixed;bottom:calc(22px + var(--safe-b));left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 20px;border-radius:30px;font-size:13px;font-weight:500;z-index:600;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap;box-shadow:var(--sh-lg)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  .hero-grid,.pd-grid,.co-grid,.cart-grid,.contact-grid{grid-template-columns:1fr;gap:28px}
+  .why-grid,.prod-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .main-nav{display:none}.ham{display:flex}
+  .pd-img-col,.cart-sum,.co-sum-sticky{position:static}
+  .field-row,.cc-row{grid-template-columns:1fr}
+  .desc-grid{grid-template-columns:1fr}
+  .hero-img-col{order:-1;max-width:320px;margin:0 auto}
+  .hero-badge{display:none}
+}
+@media(max-width:640px){
+  .hero-img-col{display:none}
+  .hero{padding:36px 0 32px}
+  .hero h1{font-size:34px!important}
+}
+@media(max-width:560px){
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid,.foot-grid{grid-template-columns:1fr}
+  .cart-page,.co-page{padding-bottom:calc(90px + var(--safe-b))}
+  .prod-sec,.why-sec{padding:44px 0}
+  .sec-title{font-size:24px!important}
+  }
+
+/* ── CART CLASS ALIASES (JS-generated names) ── */
+.co-btn{width:100%;background:var(--red);color:#fff;padding:14px;border-radius:8px;font-size:14px;font-weight:700;margin-top:14px;cursor:pointer;border:none;font-family:inherit;transition:background .2s;display:block;text-align:center}
+.co-btn:hover{background:var(--red-dk)}
+.cont-btn{width:100%;background:transparent;color:var(--muted);padding:9px;font-size:13px;margin-top:6px;cursor:pointer;border:none;font-family:inherit;display:block;text-align:center;transition:color .2s}
+.cont-btn:hover{color:var(--ink)}
+.cs-body{padding:18px}
+.cs-head{padding:15px 18px;border-bottom:1px solid var(--border);font-weight:700;font-size:14px;background:var(--warm);border-radius:var(--r-lg) var(--r-lg) 0 0}
+.cs-secure{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:4px}
+.cs-pay{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.cq-btn{width:30px;height:30px;border-radius:6px;background:var(--warm);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;user-select:none}
+.cq-btn:hover{background:var(--border)}
+.cq-val{font-size:13px;font-weight:600;min-width:20px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>&#128222; +18333232668</span>
+    <span>&#128666; Free Worldwide Shipping &mdash; USPS Delivery 7&ndash;10 Days</span>
+    <span>&#9993; support@kitchenami-kitchen.com</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <div class="logo" id="logo">
+      <div class="logo-mk">&#127859;</div>
+      <span class="logo-tx">Kitchen Ami</span>
+    </div>
+    <nav class="main-nav">
+      <a id="nav-home" class="act">Home</a>
+      <a id="nav-shop">Shop</a>
+      <a id="nav-contact">Contact</a>
+    </nav>
+    <div class="hdr-right">
+      <button class="cart-btn" id="cart-btn">
+        &#128722; Cart <span class="cart-badge" id="cart-count">0</span>
+      </button>
+      <div class="ham" id="ham"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mob-nav" id="mob-nav">
+  <a id="mn-home">Home</a>
+  <a id="mn-shop">Shop</a>
+  <a id="mn-contact">Contact</a>
+  <a id="mn-privacy">Privacy Policy</a>
+  <a id="mn-terms">Terms of Sale</a>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow">&#10024; Kitchen Essentials</div>
+          <h1>Cook Smarter,<br>Live <em>Better</em></h1>
+          <p class="hero-sub">Hand-picked kitchen gadgets designed to make cooking easier, faster, and more enjoyable — every single day.</p>
+          <div class="hero-btns">
+            <button class="btn btn-red" id="hero-shop">Shop Now &rarr;</button>
+            <button class="btn btn-ghost" id="hero-all">View All Products</button>
+          </div>
+
+        </div>
+        <div class="hero-img-col">
+          <div class="hero-img" id="hero-img"></div>
+          <div class="hero-badge">
+            <span class="hero-badge-icon">&#128274;</span>
+            <div><strong>Secure Checkout</strong><span>SSL Encrypted &amp; Safe</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container trust-bar-inner">
+      <span class="trust-item">&#128666; Free Shipping</span>
+      <span class="trust-item">&#128260; 30-Day Returns</span>
+      <span class="trust-item">&#128274; Secure Checkout</span>
+      <span class="trust-item">&#128666; USPS Delivery</span>
+    </div>
+  </div>
+
+  <!-- WHY SECTION -->
+  <section class="why-sec">
+    <div class="container">
+      <p class="sec-label">Our Promise</p>
+      <p class="sec-title">Why Choose Kitchen Ami?</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">&#129381;</div>
+          <div class="why-title">Quality First</div>
+          <div class="why-desc">Every product is made with food-safe materials, carefully selected for daily kitchen use.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128274;</div>
+          <div class="why-title">Secure Checkout</div>
+          <div class="why-desc">256-bit SSL encryption. Pay with Visa or Mastercard.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128666;</div>
+          <div class="why-title">USPS Delivery</div>
+          <div class="why-desc">Orders dispatched within 7 days. Free shipping on all orders.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">&#128260;</div>
+          <div class="why-title">Easy Returns</div>
+          <div class="why-desc">Not satisfied? Return within 30 days for a full refund — no questions asked.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="prod-sec">
+    <div class="container">
+      <p class="sec-label">Handpicked For You</p>
+      <p class="sec-title">Our Products</p>
+      <p class="sec-sub">Practical kitchen essentials for your everyday cooking — <a id="home-see-all" style="color:var(--red);font-weight:600;text-decoration:underline;cursor:pointer">see all &rarr;</a></p>
+      <div class="prod-grid" id="featured-grid"></div>
+    </div>
+  </section>
+
+  <section class="prod-sec" style="background:var(--warm)">
+    <div class="container">
+      <p class="sec-label">Customer Favorites</p>
+      <p class="sec-title">Most Popular</p>
+      <p class="sec-sub">Everyday kitchen essentials for modern home cooks</p>
+      <div class="prod-grid" id="popular-grid"></div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+<!-- ═══ SHOP ═══ -->
+<div class="page" id="page-shop">
+  <div class="container" style="padding:40px 0 60px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px">
+      <h1 style="font-family:'Playfair Display',serif;font-size:28px">All Products</h1>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="filter-pills">
+        <button data-tag="all" class="active">All</button>
+        <button data-tag="cooking">Cooking</button>
+        <button data-tag="storage">Storage</button>
+        <button data-tag="prep">Prep Tools</button>
+      </div>
+    </div>
+    <div class="prod-grid" id="shop-grid"></div>
+  </div>
+</div>
+
+<!-- ═══ PRODUCT DETAIL ═══ -->
+<div class="page" id="page-product">
+  <div class="pd-page">
+    <div class="container">
+      <div class="breadcrumb" id="pd-breadcrumb">&#8592; Back to Shop</div>
+      <div class="pd-grid">
+        <div class="pd-img-col">
+          <div class="pd-main" id="pd-main"></div>
+          <div class="pd-thumbs" id="pd-thumbs"></div>
+        </div>
+        <div>
+          <div class="pd-cat" id="pd-cat"></div>
+          <h1 class="pd-name" id="pd-name"></h1>
+          <div class="pd-price-row">
+            <span class="pd-price" id="pd-price"></span>
+            <span class="pd-old" id="pd-old" style="display:none"></span>
+            <span class="pd-save" id="pd-save" style="display:none"></span>
+          </div>
+          <div class="pd-usps">
+            <span>&#128274; Secure Payment</span>
+            <span>&#128666; Free Shipping</span>
+            <span>&#128260; 30-Day Return</span>
+          </div>
+          <div class="pd-qty">
+            <button class="qty-btn" id="qty-minus">&#8722;</button>
+            <span id="det-qty" style="font-size:16px;font-weight:600;min-width:24px;text-align:center">1</span>
+            <button class="qty-btn" id="qty-plus">+</button>
+            <button class="pd-add btn-red" id="pd-add-btn">Add to Cart &rarr;</button>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:10px">&#128274; Secure &amp; Encrypted Checkout</div>
+          <div class="pay-logos" id="pd-pay-logos"></div>
+          <div class="tab-btns">
+            <button class="tab-btn act" data-tab="desc">Description</button>
+            <button class="tab-btn" data-tab="ship">Shipping</button>
+            <button class="tab-btn" data-tab="ret">Returns</button>
+          </div>
+          <div class="tab-pane act" id="tab-desc"><div class="desc-grid" id="pd-desc"></div></div>
+          <div class="tab-pane" id="tab-ship"><p style="color:var(--muted);font-size:14px;line-height:1.6">Free shipping on all orders. Delivered in 7&ndash;10 business days via USPS. Tracking number sent by email once shipped.</p></div>
+          <div class="tab-pane" id="tab-ret"><p style="color:var(--muted);font-size:14px;line-height:1.6">Return within 30 days of receipt. Item must be unused and in original packaging. Return shipping at customer&rsquo;s expense.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Related -->
+  <div style="padding:32px 0 60px;background:var(--warm)">
+    <div class="container">
+      <p style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:20px">You Might Also Like</p>
+      <div class="prod-grid" id="related-grid"></div>
+    </div>
+  </div></div>
+</div>
+
+
+<!-- ═══ CART ═══ -->
+<div class="page" id="page-cart">
+  <div class="cart-page">
+    <div class="container">
+      <div class="cart-grid" id="cart-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CHECKOUT ═══ -->
+<div class="page" id="page-checkout">
+  <div class="co-page"><div class="container">
+    <div id="confirm-screen" style="display:none">
+      <div class="confirm-wrap">
+        <div style="font-size:64px;margin-bottom:16px">&#127881;</div>
+        <h2>Order Confirmed!</h2>
+        <p>Order <strong id="confirm-num"></strong> placed successfully.</p>
+        <p style="margin-bottom:24px">A confirmation email will be sent to you shortly.</p>
+        <button class="btn btn-ink" id="confirm-shop">Continue Shopping</button>
+      </div>
+    </div>
+    <div id="checkout-form">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;margin-bottom:16px;flex-wrap:wrap">
+        <span style="color:var(--muted)">&#128717; Shopping Cart</span>
+        <span style="color:var(--border)">›</span>
+        <span style="color:var(--red)">&#128179; Checkout</span>
+        <span style="color:var(--border)">›</span>
+        <span style="color:var(--muted)">&#127881; Order Complete</span>
+      </div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:26px;margin-bottom:8px">Secure Checkout</h1>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Have a coupon? <a id="coupon-lnk" style="color:var(--red);text-decoration:underline;cursor:pointer">Click here to enter your code</a></p>
+      <div id="coupon-panel" style="display:none;margin-bottom:20px">
+        <div style="display:flex;gap:8px;align-items:center;max-width:400px">
+          <input id="coupon-input" type="text" placeholder="Coupon code" style="flex:1;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit">
+          <button id="coupon-apply" style="background:var(--ink);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit;white-space:nowrap">Apply</button>
+        </div>
+        <p id="coupon-msg" style="font-size:12px;margin-top:6px;color:var(--muted)"></p>
+      </div>
+      <div class="co-grid">
+        <div class="co-col">
+          <div class="co-box">
+            <div class="co-box-title">&#128100; Contact Information</div>
+            <div class="co-box-body">
+              <div class="field-row">
+                <div class="field"><label>First Name</label><input type="text" placeholder="Jane"></div>
+                <div class="field"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+              </div>
+              <div class="field"><label>Email</label><input type="email" placeholder="jane@email.com"></div>
+              <div class="field"><label>Phone</label><input type="tel" placeholder="+1 (555) 000-0000"></div>
+            </div>
+          </div>
+          <div class="co-box">
+            <div class="co-box-title">&#128221; Additional Information</div>
+            <div class="co-box-body">
+              <div class="field"><label>Order Notes <span style="font-weight:400;text-transform:none">(optional)</span></label><textarea style="width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;min-height:80px" placeholder="Notes about your order, e.g. special delivery instructions..."></textarea></div>
+            </div>
+          </div>
+          <div class="co-box">
+            <div class="co-box-title">&#128666; Shipping Address</div>
+            <div class="co-box-body">
+              <div class="field"><label>Address</label><input type="text" placeholder="123 Main St, Apt 4B"></div>
+              <div class="field"><label>City</label><input type="text" placeholder="New York"></div>
+              <div class="field-row">
+                <div class="field" id="state-field"><label id="state-label">State</label><select id="co-state"><option value="">Select state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
+                <div class="field"><label>ZIP Code</label><input type="text" placeholder="10001" maxlength="10"></div>
+              </div>
+              <div class="field">
+                  <label>Country</label>
+                  <select id="co-country" onchange="handleCountry(this)">
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="AU">Australia</option>
+                    <option value="FR">France</option>
+                    <option value="DE">Germany</option>
+                    <option value="IT">Italy</option>
+                    <option value="ES">Spain</option>
+                    <option value="BE">Belgium</option>
+                    <option value="NL">Netherlands</option>
+                    <option value="CH">Switzerland</option>
+                    <option value="AT">Austria</option>
+                    <option value="PT">Portugal</option>
+                    <option value="SE">Sweden</option>
+                    <option value="NO">Norway</option>
+                    <option value="DK">Denmark</option>
+                    <option value="FI">Finland</option>
+                    <option value="PL">Poland</option>
+                    <option value="CZ">Czech Republic</option>
+                    <option value="RO">Romania</option>
+                    <option value="HU">Hungary</option>
+                    <option value="GR">Greece</option>
+                    <option value="IE">Ireland</option>
+                    <option value="NZ">New Zealand</option>
+                    <option value="JP">Japan</option>
+                    <option value="KR">South Korea</option>
+                    <option value="SG">Singapore</option>
+                    <option value="AE">United Arab Emirates</option>
+                    <option value="SA">Saudi Arabia</option>
+                    <option value="ZA">South Africa</option>
+                    <option value="BR">Brazil</option>
+                    <option value="MX">Mexico</option>
+                    <option value="AR">Argentina</option>
+                    <option value="CO">Colombia</option>
+                    <option value="MA">Morocco</option>
+                    <option value="DZ">Algeria</option>
+                    <option value="TN">Tunisia</option>
+                    <option value="SN">Senegal</option>
+                    <option value="NG">Nigeria</option>
+                    <option value="KE">Kenya</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+            </div>
+          </div>
+          <div class="co-box">
+            <div class="co-box-title">&#128179; Payment Details</div>
+            <div class="co-box-body">
+              <div class="pay-logos" id="co-pay-logos" style="margin-bottom:16px"></div>
+              <div class="field"><label>Card Number</label><input type="tel" id="cc-num" placeholder="1234 5678 9012 3456" maxlength="19"></div>
+              <div class="cc-row">
+                <div class="field"><label>Name on Card</label><input type="text" placeholder="Jane Smith"></div>
+                <div class="field"><label>Expiry</label><input type="tel" id="cc-exp" placeholder="MM / YY" maxlength="7"></div>
+                <div class="field"><label>CVV</label><input type="tel" placeholder="123" maxlength="4"></div>
+              </div>
+              <div class="tc-row">
+                <input type="checkbox" id="tc-check">
+                <span>I am 18 years or older and agree to the <a id="tc-terms-lnk" style="color:var(--red);text-decoration:underline;cursor:pointer">Terms &amp; Conditions</a> and <a id="tc-priv-lnk" style="color:var(--red);text-decoration:underline;cursor:pointer">Privacy Policy</a> explaining that by placing an order, Product delivery is free (free S&amp;H), You will not be enrolled in any type of continuity program by ordering said option from this website. The charges will appear on your billing statement as <strong>kitchenami-kitchen</strong>. Delivery is via USPS and takes between 7 business days from the order processing date.</span>
+              </div>
+              <button class="submit-btn" id="place-order-btn">&#128274; Place Order &rarr;</button>
+              <div style="margin-top:16px;padding:14px;background:var(--warm);border-radius:8px;font-size:11px;color:var(--muted);line-height:1.8">
+                <strong style="color:var(--ink);display:block;margin-bottom:6px">&#128274; Secure Billing Information</strong>
+                The charges will appear on your billing statement as <strong>kitchenami-kitchen</strong>. For any question concerning your order or a question concerning one of our products do not hesitate to contact our customer service by email at <strong>support@kitchenami-kitchen.com</strong> or by filling our contact form.<br><br>
+                We&rsquo;re open from Monday to Saturday, 9am&ndash;7pm EST Time.
+              </div></div>
+          </div>
+        </div>
+        <div class="co-sum-sticky">
+          <div class="co-sum-head">&#128717; Order Summary</div>
+          <div class="co-sum-body">
+            <div id="co-lines"></div>
+            <hr class="sum-divider">
+            <div class="co-line"><span>Subtotal</span><span id="co-sub"></span></div>
+            <div class="co-line"><span>Shipping</span><span id="co-ship"></span></div>
+            <hr class="sum-divider">
+            <div class="co-total-row"><span>Total</span><span id="co-total"></span></div>
+            <div class="co-secure">&#128274; 256-bit SSL Encrypted</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div class="page" id="page-contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <h1 style="font-family:'Playfair Display',serif;font-size:28px;margin-bottom:8px">Contact Us</h1>
+        <p style="color:var(--muted);margin-bottom:24px;font-size:15px">We&rsquo;re here to help. Send us a message and we&rsquo;ll get back to you within 24 hours.</p>
+        <form id="contact-form" class="contact-form" onsubmit="event.preventDefault();alert('Thank you! We\u2019ll reply within one working day.');this.reset();">
+          <div class="field"><label>Your Name</label><input type="text" name="name" placeholder="Jane Smith" required></div>
+          <div class="field"><label>Email</label><input type="email" name="email" placeholder="jane@email.com" required></div>
+          <div class="field"><label>Message</label><textarea name="message" placeholder="How can we help you?" required></textarea></div>
+          <button type="submit" class="btn btn-red" id="contact-send">Send Message</button>
+        </form>
+      </div>
+      <div style="padding-top:48px">
+        <div class="ci-info-item"><div class="ci-icon">&#128222;</div><div><strong style="display:block;margin-bottom:2px">Phone</strong><span style="color:var(--muted);font-size:14px">+18333232668</span></div></div>
+        <div class="ci-info-item"><div class="ci-icon">&#9993;</div><div><strong style="display:block;margin-bottom:2px">Email</strong><span style="color:var(--muted);font-size:14px">support@kitchenami-kitchen.com</span></div></div>
+        <div class="ci-info-item"><div class="ci-icon">&#128205;</div><div><strong style="display:block;margin-bottom:2px">Address</strong><span style="color:var(--muted);font-size:14px">1209 MOUNTAIN ROAD PL NE STE N, ALBUQUERQUE, NM 87110</span></div></div>
+        <div class="ci-info-item"><div class="ci-icon">&#128336;</div><div><strong style="display:block;margin-bottom:2px">Hours</strong><span style="color:var(--muted);font-size:14px">Mon&ndash;Fri, 9am&ndash;6pm EST</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRIVACY ═══ -->
+<div class="page" id="page-privacy">
+  <div class="container"><div class="static-wrap">
+    <h1>Privacy Policy</h1>
+    <p><strong>Privacy Policy for KITCHENAMI STORE LLC</strong> (referred to hereafter as "the Website")</p>
+    <p>Please note: The Website privacy policy changes from time to time and changes are effective upon posting. Please check back frequently for updates as it is your sole responsibility to be aware of changes. The Website does not provide notices of changes in any manner other than by posting the changes at this web site.</p>
+    <p>If you do not agree with the terms of this privacy policy please do not provide any information to the Website or use any of the services or products offered or provided on any of the websites referred to in this privacy policy.</p>
+    <h2>COLLECTION OF INFORMATION</h2>
+    <p><strong>1.1 SURVEY INFORMATION</strong><br>The Website collects information from individuals by various methods, including, but not limited to, when an individual voluntarily completes a survey, order form, or a registration page either online or offline, or by means of online or offline surveys, order forms, or registration pages operated by third parties (collectively, a "Survey"). In the Surveys, the Website or a third party (a "Third Party") may ask an individual to provide various information to the Website, which may include his or her name, email address, street address, zip code, telephone numbers (including cell phone numbers and carriers), birth date, gender, salary range, education and marital status, occupation, social security number, employment information, personal and online interests, and such other information as may be requested from time to time (together, "Survey Information"). Completing the Surveys is completely voluntary, and individuals are under no obligation to provide survey information to the Website or Third Party, but an individual may receive incentives from the Website or a Third Party in exchange for providing Survey Information to the Website.</p>
+    <p><strong>1.2 OTHER INFORMATION</strong><br>Other occasions when the Website obtains information from individuals include (1) when an individual is making a claim for a prize or seeking to redeem an incentive offered by the Website or by a third party, (2) when an individual requests assistance through the Website&rsquo;s customer service department, and (3) when an individual voluntarily subscribes to a service or newsletter on the Website (together, "Other Information").</p>
+    <p><strong>1.3 COOKIES, WEB BEACONS, AND OTHER INFO COLLECTED USING TECHNOLOGY</strong><br>The Website currently uses cookie and web beacon technology to associate certain Internet-related information about an individual with information about the individual in our database. Additionally, the Website may use other new and evolving sources of information in the future (together, "Technology Information").</p>
+    <p><strong>(A) COOKIES</strong> &mdash; A cookie is a small amount of data stored on the hard drive of the individual&rsquo;s computer that allows the Website to identify the individual with his or her corresponding data that resides in the Website&rsquo;s database. Individuals who use the Websites need to accept cookies in order to use all of the features and functionality of the Websites.</p>
+    <p><strong>(B) WEB BEACONS</strong> &mdash; A web beacon is programming code that can be used to display an image on a web page, but can also be used to transfer an individual&rsquo;s unique user identification (often in the form of a cookie) to a database and associate the individual with previously acquired information about an individual in a database. This allows the Website to track certain web sites an individual visits online.</p>
+    <p><strong>(C) NEW TECHNOLOGY</strong> &mdash; The use of technology on the Internet, including cookies and web beacons, is rapidly evolving, as is the Website&rsquo;s use of new and evolving technology. As a result, the Website strongly encourages individuals to revisit this policy for any updates regarding its use of technology.</p>
+    <p><strong>1.4 OUTSIDE INFORMATION</strong><br>The Website may receive information about individuals from third parties or from other sources of information outside of the Website including information located in public databases ("Outside Information").</p>
+    <p><strong>1.5 INDIVIDUAL INFORMATION</strong><br>As used herein, Individual Information means Survey Information, Third Party List Information, Other Information, Technology Information, and Outside Information, and any other information the Website gathers or receives about individuals.</p>
+    <p><strong>1.6 NO INFORMATION COLLECTED FROM CHILDREN</strong><br>The Website will never knowingly collect any personal information about children under the age of 13. If the Website obtains actual knowledge that it has collected personal information about a child under the age of 13, that information will be immediately deleted from our database. The Website has designed this policy in order to comply with the Children&rsquo;s Online Privacy Protection Act ("COPPA").</p>
+    <p><strong>1.7 CREDIT CARD INFORMATION</strong><br>The Website may in certain cases collect credit card numbers and related information, such as the expiration date of the card ("Credit Card Information") when an individual places an order from the Website. When the Credit Card Information is submitted to the Website, such information is encrypted and is protected with SSL encryption software. The Website will use the Credit Card Information for purposes of processing and completing the purchase transaction, and the Credit Card Information will be disclosed to third parties only as necessary to complete the purchase transaction.</p>
+    <h2>USE OF INDIVIDUAL INFORMATION</h2>
+    <p><strong>2.1 DISCRETION TO USE INFORMATION</strong><br>The company may use individual information for any legally permissible purpose at company&rsquo;s sole discretion. We do not sell or share any of our customer&rsquo;s information.</p>
+    <p><strong>2.2 EMAIL</strong><br>The Website uses Individual Information to provide promotional offers by email to individuals. The Website may maintain separate email lists for different purposes. If email recipients wish to end their email subscription from a particular list, they need to follow the instructions at the end of each email message to unsubscribe from the particular list.</p>
+    <p><strong>2.3 TARGETED ADVERTISING</strong><br>The Website uses Individual Information to target advertising to an individual. The Website may, at its discretion, target advertising by using email, direct mail, cell phones, and other means of communication to provide promotional offers.</p>
+    <p><strong>2.4 USE OF TECHNOLOGY INFORMATION</strong><br>The Website uses Technology Information (1) to match a person&rsquo;s Survey Information to other categories of Individual Information to make and improve profiles of individuals, (2) to track a person&rsquo;s online browsing habits on the Internet, (3) to determine which areas of the Website&rsquo;s web sites are most frequently visited.</p>
+    <p><strong>2.5 PROFILES OF INDIVIDUALS</strong><br>The Website uses Individual Information to make a profile of an individual. A profile can be created by combining Survey Information and Third Party List Information with other sources of Individual Information such as information obtained from public databases.</p>
+    <p><strong>2.6 STORAGE OF INDIVIDUAL INFORMATION</strong><br>The Website stores the Individual Information in a database on the Website&rsquo;s computers. Our computers have security measures (such as a firewall) in place to protect against the loss, misuse, and alteration of the information under the Website&rsquo;s control.</p>
+    <h2>DISSEMINATION OF INDIVIDUAL INFORMATION</h2>
+    <p><strong>3.1 ORDER FULFILLMENT</strong><br>The Website will transfer Individual Information to third parties when necessary to provide a product or service that a person orders from such third party while using the Website or when responding to offers provided by the Website.</p>
+    <p><strong>3.2 LEGAL PROCESS</strong><br>The Website may disclose Individual Information to respond to subpoenas, court orders, and other legal processes.</p>
+    <p><strong>3.3 SUMMARY DATA</strong><br>We do not sell or share any of our customer&rsquo;s information.</p>
+    <p><strong>3.4 ACCESS</strong><br>Individuals have access to their Individual Information collected to provide an opportunity for an individual to correct, amend, or delete such information. Access can be obtained by contacting customer service using the information at the bottom of this document.</p>
+    <h2>PRIVACY PRACTICES OF THIRD PARTIES</h2>
+    <p><strong>4.1 ADVERTISER COOKIES AND WEB BEACONS</strong><br>Advertising agencies, advertising networks, and other companies who place advertisements on the Websites and on the Internet generally may use their own cookies, web beacons, and other technology to collect information about individuals. The Website does not control Advertisers&rsquo; use of such technology.</p>
+    <p><strong>4.2 LINKS</strong><br>The Websites and email messages sometimes contain hypertext links to the web sites of third parties. The Website is not responsible for the privacy practices or the content of such other web sites.</p>
+    <h2>UNSUBSCRIBE PROCEDURES</h2>
+    <p>If you wish to discontinue receiving email messages from the Website please inform us by contacting customer service using the information at the bottom of this document. We reserve the right to add Individual Information to multiple lists maintained by the Website.</p>
+    <p>For more information about protecting your privacy, you may wish to visit: <strong>www.ftc.gov</strong></p>
+    <h2>CONTACT INFORMATION</h2>
+    <p><strong>KITCHENAMI STORE LLC</strong><br>1209 MOUNTAIN ROAD PL NE STE N, ALBUQUERQUE, NM 87110<br>Support Telephone: +18333232668<br>Support Email: support@kitchenami-kitchen.com</p>
+  </div></div>
+</div>
+
+<!-- ═══ TERMS ═══ -->
+<div class="page" id="page-terms">
+  <div class="container"><div class="static-wrap">
+    <h1>Terms of Sale</h1>
+    <h2>USER AGREEMENT</h2>
+    <p>You must read and agree to these Terms and Conditions before ordering from <strong>KITCHENAMI STORE LLC</strong>. By placing an order, You agree to be bound by the following Terms and Conditions.</p>
+    <p>This is a binding agreement between You, the person agreeing to the terms contained in this document ("I", "You", "Your" or "Customer"), and KITCHENAMI STORE LLC, the owner and administrator of this Website ("Our", "Us", or "Company"). These terms govern Your use of and access to this Website and any and all of its sub-pages (collectively, the "Website").</p>
+    <h2>AVAILABLE PRODUCTS</h2>
+    <table>
+      <tr><th>Product</th><th>Price</th></tr>
+      <tr><td>Premium Kitchen Apron &mdash; Chef's Edition</td><td>$7.99</td></tr>
+      <tr><td>Silicone Baking Mat Set of 2</td><td>$14.99</td></tr>
+      <tr><td>Collapsible Colander 5L</td><td>$24.99</td></tr>
+      <tr><td>Magnetic Measuring Spoons Set</td><td>$29.99</td></tr>
+      <tr><td>2-in-1 Oil Sprayer &amp; Dispenser</td><td>$39.99</td></tr>
+      <tr><td>Stainless Steel Garlic Press</td><td>$44.99</td></tr>
+      <tr><td>Stainless Steel Dumpling Maker Press</td><td>$49.99</td></tr>
+      <tr><td>6Pcs Silicone Food Preservation Covers</td><td>$59.99</td></tr>
+    </table>
+    <p>Terms: One-time purchase. You will receive an order confirmation by email after each purchase.</p>
+    <h2>ACCEPTANCE OF TERMS OF USE</h2>
+    <p>By using, visiting, or browsing the Website, as well as placing an order with <strong>KITCHENAMI STORE LLC</strong> through the Website, You accept, without limitation or qualification, these Terms of Use and agree to the terms of Our Privacy Policy. If You do not agree to be bound by these Terms of Use and Privacy Policy, You should exit the Website immediately. By accessing, using or ordering products through the Website, You affirm that You have read this Agreement and understand, agree, and consent to all Terms contained herein.</p>
+    <p>These Terms of Use constitute the entire agreement between <strong>KITCHENAMI STORE LLC</strong> and You, and supersede all prior or contemporaneous agreements, representations, warranties, and understandings with respect to the Website. You manifest Your agreement to the Terms in this document by any act demonstrating Your assent thereto, including clicking any button containing the words "I Agree", "Place My Order", "Submit" or similar syntax, or by merely accessing the Website.</p>
+    <h2>CREDIT CARD DESCRIPTOR</h2>
+    <p>By ordering products from us, you authorize us to charge your credit card accordingly (once). This authorization will be automatically removed once the order is completed and your credit card information will need to be re-entered for future orders. Please note that the descriptor that appears on your credit card statement will appear as <strong>kitchenami-kitchen</strong>. If you have any questions regarding your credit card statement, you should call our customer service department at +18333232668.</p>
+    <h2>DELIVERY COST</h2>
+    <p>Deliveries are free worldwide (free S&amp;H). Shipments are tracked, and the tracking number is sent by email to each order as soon as it is shipped. Shipping within 7 days with USPS.</p>
+    <h2>SHIPPING TERMS</h2>
+    <p>We ship all our products via USPS. Delivery takes 7 to 10 business days from the order processing date. Please be advised that shipments are not sent on Saturdays, Sundays, or any Holidays. <strong>KITCHENAMI STORE LLC</strong> does not guarantee specific arrival dates or times and does not refund or credit delivery or processing charges for any shipments via USPS. You will receive a tracking number by email once your order has been shipped.</p>
+    <h2>REFUND POLICY</h2>
+    <p>We refund all cases of fraud and unauthorized transactions, including shipping and handling charges. Call +18333232668 to obtain a refund. Additional refunds are issued at the discretion of the company. Customers are restricted to receiving a single refund per product ordered. Repetitive refunds are not permitted unless the product, as delivered to you, is defective. We reserve the right to refuse a refund to any customer who repeatedly requests refunds or who, in our judgment, requests refunds in bad faith.</p>
+    <p>In order to process your refund, you must supply us with your name and delivery address. We will credit any returned opened or unopened product if the received package is post-marked within 30 days of the order received date. Refunds will be issued to customer credit card within 3 business days. No returns are credited after 30 days of the received date.</p>
+    <h2>RETURN POLICY</h2>
+    <p>To obtain your refund, contact customer service by phone and obtain an RMA (Return Merchandise Authorization) number to place on your package. Write this number on the outside of the shipping package, and send the product back to our fulfillment center within 30 days from receipt of the order. You pay for return shipping.</p>
+    <p><strong>Return Address:</strong><br>Fulfillment Box USA &mdash; Attn: 11815 Technology Ln #300, Fishers, IN 46038<br>Email: </p>
+    <h2>LIMITATION OF LIABILITY AND DISCLAIMER OF WARRANTY</h2>
+    <p>THE MATERIALS AND PRODUCTS CONTAINED AND OFFERED ON THE WEBSITE ARE PROVIDED "AS IS" AND WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMISSIBLE PURSUANT TO APPLICABLE LAW, <strong>KITCHENAMI STORE LLC</strong> DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR OTHER VIOLATIONS OF RIGHTS. IN NO EVENT SHALL <strong>KITCHENAMI STORE LLC</strong> OR ITS OFFICERS, DIRECTORS, SHAREHOLDERS, EMPLOYEES, INDEPENDENT CONTRACTORS, TELECOMMUNICATIONS PROVIDERS, AND AGENTS BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, EXEMPLARY, CONSEQUENTIAL, OR PUNITIVE DAMAGES, UNDER ANY CAUSE OF ACTION WHATSOEVER INCLUDING, BUT NOT LIMITED TO, CONTRACT, TORT, STRICT LIABILITY, WARRANTY, OR OTHERWISE. IN THE EVENT THAT <strong>KITCHENAMI STORE LLC</strong> IS FOUND LIABLE FOR ANY DAMAGES, <strong>KITCHENAMI STORE LLC</strong>&rsquo;S TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT PAID BY THE CUSTOMER FOR THE PRODUCTS GIVING RISE TO THE CLAIM.</p>
+    <h2>MODIFICATIONS TO THE TERMS OF USE</h2>
+    <p><strong>KITCHENAMI STORE LLC</strong> reserves the right to change or update these Terms of Use at any time. Any changes or updates will be effective immediately upon posting to the Website. Your continued use of the Website following the posting of changes or updates constitutes Your acceptance of such changes or updates.</p>
+    <h2>GOVERNING LAW</h2>
+    <p>These Terms of Use shall be governed by and construed in accordance with the laws of the State of Michigan, without regard to its conflict of law principles. Any disputes arising out of or related to these Terms of Use shall be subject to the exclusive jurisdiction of the state and federal courts located in Detroit, Michigan.</p>
+    <h2>SEVERABILITY</h2>
+    <p>If any provision of these Terms of Use is found to be invalid, illegal, or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+    <h2>CONTACT INFORMATION</h2>
+    <p>For any questions or concerns regarding these Terms of Use, please contact <strong>KITCHENAMI STORE LLC</strong> Customer Service:</p>
+    <p>Email: support@kitchenami-kitchen.com &mdash; Phone: +18333232668<br>1209 MOUNTAIN ROAD PL NE STE N, ALBUQUERQUE, NM 87110</p>
+    <p>Thank you for shopping with <strong>KITCHENAMI STORE LLC</strong></p>
+  </div></div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><div class="mk">&#127859;</div> Kitchen Ami</div>
+        <p class="foot-desc">Practical kitchen gadgets for the modern home cook. Quality you can trust, delivered to your door.</p>
+        <div style="margin-top:14px;font-size:12px">&#128666; Ships within 7 days via USPS</div>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul class="foot-links">
+          <li><a id="fl-shop">All Products</a></li>
+          <li><a id="fl-home">Home</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul class="foot-links">
+          <li><a id="fl-privacy">Privacy Policy</a></li>
+          <li><a id="fl-terms">Terms of Sale</a></li>
+          <li><a id="fl-contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="foot-col foot-contact">
+        <h4>KITCHENAMI STORE LLC</h4>
+        <p>&#128222; +18333232668</p>
+        <p>&#9993; support@kitchenami-kitchen.com</p>
+        <p>&#128205; 1209 MOUNTAIN ROAD PL NE STE N, ALBUQUERQUE, NM 87110</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">&copy; 2026 KITCHENAMI STORE LLC. All rights reserved.</p>
+      <div class="foot-pay" id="footer-pay"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+(function() {
+'use strict';
+
+/* ── PAY SVG ── */
+var PAY_HTML = [
+  '<svg viewBox="0 0 68 38" xmlns="http://www.w3.org/2000/svg" style="height:24px;border-radius:4px"><rect width="68" height="38" rx="4" fill="#000"/><text x="34" y="24" text-anchor="middle" fill="#fff" font-size="12" font-family="Arial">Apple Pay</text></svg>',
+  '<svg viewBox="0 0 68 38" xmlns="http://www.w3.org/2000/svg" style="height:24px;border-radius:4px"><rect width="68" height="38" rx="4" fill="#fff" stroke="#ddd"/><text x="34" y="24" text-anchor="middle" font-size="13" font-family="Arial"><tspan fill="#4285F4">G</tspan><tspan fill="#555">Pay</tspan></text></svg>',
+  '<svg viewBox="0 0 60 38" xmlns="http://www.w3.org/2000/svg" style="height:24px;border-radius:4px"><rect width="60" height="38" rx="4" fill="#1A1F71"/><text x="30" y="25" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-style="italic" font-family="Georgia">VISA</text></svg>',
+  '<svg viewBox="0 0 60 38" xmlns="http://www.w3.org/2000/svg" style="height:24px;border-radius:4px"><rect width="60" height="38" rx="4" fill="#fff" stroke="#ddd"/><circle cx="23" cy="19" r="11" fill="#EB001B"/><circle cx="37" cy="19" r="11" fill="#F79E1B"/><ellipse cx="30" cy="19" rx="4" ry="11" fill="#FF5F00"/></svg>'
+].join('');
+
+/* ── PRODUCTS ── */
+/* ⚠️ 8 produits triés par prix CROISSANT (règle compliance MidsUP gadget) */
+var C = 'https://wsrv.nl/?url=m.media-amazon.com/images/I/';
+
+var products = [
+  {
+    id: 1,
+    url: 'https://www.amazon.com/TrendPlain-16oz-Dispenser-Bottle-Kitchen/dp/B0CJF94M8J',
+    name: '2-in-1 Oil Sprayer & Dispenser 470ml',
+    price: 7.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🫒',
+    cat: 'Oil Tools',
+    tag: 'cooking',
+    imgs: [C + '716HuBmcRsL.jpg'],
+    desc: {
+      b: ['Switches between mist spray and pour stream', 'Even oil application for healthier cooking', 'Compact everyday kitchen format', 'Perfect for air fryer and salad'],
+      s: ['Material: glass + plastic', 'Capacity: 470ml', 'Use: oil or vinegar', 'Style: 2-in-1 dispenser'],
+      i: ['1x Oil Sprayer Bottle'],
+      p: ['Salad dressing', 'Pan cooking', 'Air fryer', 'BBQ & grilling']
+    }
+  },
+  {
+    id: 2,
+    url: 'https://www.amazon.com/KitchenAid-KE199OHOBA-Classic-Multifunction-Opener/dp/B07YP2VH4B',
+    name: 'Multifunction Can & Bottle Opener',
+    price: 14.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🥫',
+    cat: 'Openers',
+    tag: 'cooking',
+    imgs: [C + '51yO+bt+mqL.jpg'],
+    desc: {
+      b: ['Clean and fast can opening', 'Ergonomic grip handle', 'Dual use: cans and bottles', 'Compact shape, easy to store'],
+      s: ['Material: stainless steel', 'Handle: ergonomic grip', 'Use: cans + bottles', 'Color: black'],
+      i: ['1x Can Opener'],
+      p: ['Canned food', 'Bottle caps', 'Everyday cooking', 'Meal prep']
+    }
+  },
+  {
+    id: 3,
+    url: 'https://www.amazon.com/Starfrit-93209-Rotato-Express-Electric/dp/B000X9EPT0',
+    name: 'Electric Rotating Peeler',
+    price: 24.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🥔',
+    cat: 'Prep Tools',
+    tag: 'prep',
+    imgs: [C + '71B4P2T8XyL.jpg'],
+    desc: {
+      b: ['Automatic peeling, hands-free', 'Saves time on batch prep', 'Works on fruits and vegetables', 'Simple one-button operation'],
+      s: ['Type: electric peeler', 'Includes: spare blades', 'Use: fruit + vegetables', 'Power: countertop appliance'],
+      i: ['1x Electric Peeler', '2x Spare blades'],
+      p: ['Potatoes', 'Apples', 'Batch prep', 'Quick cooking']
+    }
+  },
+  {
+    id: 4,
+    url: 'https://www.amazon.com/Godboat-Auto-Drain-Kitchen-Counter-Drainer/dp/B09XXNLNTT',
+    name: '2-Tier Dish Drying Rack',
+    price: 29.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🍽️',
+    cat: 'Storage & Org',
+    tag: 'storage',
+    imgs: [C + '71mc2nk4LOL.jpg'],
+    desc: {
+      b: ['Two levels of drying capacity', 'Built-in auto-drain design', 'Holds dishes, cups and cutlery', 'Optimizes countertop space'],
+      s: ['Type: 2-tier rack', 'Feature: auto-drain', 'Use: dishes + cups + cutlery', 'Placement: countertop'],
+      i: ['1x Dish Rack Set'],
+      p: ['Dish drying', 'Sink organization', 'Compact kitchens', 'Daily use']
+    }
+  },
+  {
+    id: 5,
+    url: 'https://www.amazon.com/Cuisinart-DLC-2ABC-Processor-Brushed-Chrome/dp/B0000645YM',
+    name: 'Mini Food Processor 24oz',
+    price: 39.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🥣',
+    cat: 'Prep Tools',
+    tag: 'prep',
+    imgs: [C + '71x1D8m0a6L.jpg'],
+    desc: {
+      b: ['Fast chop and mince action', 'Compact but powerful motor', '24oz bowl for everyday prep', 'Great for herbs and vegetables'],
+      s: ['Capacity: 24oz', 'Blade: stainless steel', 'Use: chop + mince', 'Finish: brushed chrome'],
+      i: ['1x Mini Food Processor'],
+      p: ['Herbs', 'Vegetables', 'Hard cheese', 'Sauces & dips']
+    }
+  },
+  {
+    id: 6,
+    url: 'https://www.amazon.com/7-Piece-Modular-removable-divider-Dishwasher/dp/B0G4SJ82XY',
+    name: '7-Piece Modular Kitchen Tool Set',
+    price: 44.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🧰',
+    cat: 'Tool Sets',
+    tag: 'cooking',
+    imgs: [C + '81P7z9m5d8L.jpg'],
+    desc: {
+      b: ['Complete multi-tool kit', 'Includes a storage base', 'Great bundle value', 'Dishwasher safe pieces'],
+      s: ['Pieces: 7', 'Includes: grater, cutter, scoop, peeler, shears, opener', 'Care: dishwasher safe', 'Style: modular set'],
+      i: ['1x Gadget Crock', '6x Kitchen Tools'],
+      p: ['Cutting', 'Opening', 'Serving', 'Dessert prep']
+    }
+  },
+  {
+    id: 7,
+    url: 'https://www.amazon.com/ThermoMaven-Rechargeable-Automatic-Adjustable-Coarseness/dp/B0D7Q7LNNY',
+    name: 'Electric Salt & Pepper Grinder Set',
+    price: 49.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🧂',
+    cat: 'Grinders',
+    tag: 'cooking',
+    imgs: [C + '71cW8x8wX6L.jpg'],
+    desc: {
+      b: ['USB rechargeable grinders', 'Automatic one-hand grinding', 'Adjustable coarseness setting', 'Premium stainless finish'],
+      s: ['Type: grinder set', 'Capacity: 110ml', 'Power: rechargeable', 'Feature: LED light'],
+      i: ['2x Electric Grinders'],
+      p: ['Table seasoning', 'Hot cooking', 'Premium dining', 'Daily use']
+    }
+  },
+  {
+    id: 8,
+    url: 'https://www.amazon.com/FoodSaver-VS0150-PowerVac-Compact-Vertical/dp/B08BF3GB5Q',
+    name: 'Compact Vacuum Sealer Machine',
+    price: 59.99,
+    old: null,
+    badge: null,
+    bc: '',
+    fb: '🥩',
+    cat: 'Vacuum Sealers',
+    tag: 'storage',
+    imgs: [C + '71VTHzqk0SL.jpg'],
+    desc: {
+      b: ['Preserves food longer', 'Compact vertical format', 'Works on dry and wet food', 'Strong premium slot product'],
+      s: ['Type: vacuum sealer', 'Style: compact vertical', 'Use: dry + wet food', 'Finish: stainless steel + black'],
+      i: ['1x Vacuum Sealer Machine'],
+      p: ['Meal prep', 'Freezing', 'Leftovers', 'Kitchen organization']
+    }
+  }
+];
+
+/* ── STATE ── */
+var cart = [];
+var curProd = null;
+var detQty = 1;
+
+/* ── HELPERS ── */
+function $(id) { return document.getElementById(id); }
+function toast(msg) {
+  var el = $('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(function() { el.classList.remove('show'); }, 2600);
+}
+function getTotal() { return cart.reduce(function(s,i){return s+i.price*i.qty;},0); }
+function getCount() { return cart.reduce(function(s,i){return s+i.qty;},0); }
+function updateCount() { $('cart-count').textContent = getCount(); }
+function getP(id) { for(var i=0;i<products.length;i++) if(products[i].id===id) return products[i]; return null; }
+
+function makeImg(src, fb) {
+  var img = document.createElement('img');
+  img.src = src;
+  img.alt = '';
+  img.loading = 'lazy';
+  img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block';
+  img.onerror = function() {
+    var d = document.createElement('div');
+    d.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;background:var(--warm)';
+    d.textContent = fb;
+    img.parentNode.replaceChild(d, img);
+  };
+  return img;
+}
+function injectPay(id) {
+  var el = $(id);
+  if(el) el.innerHTML = PAY_HTML;
+}
+
+/* ── ROUTER ── */
+function showPage(page, id) {
+  var ps = document.querySelectorAll('.page');
+  for(var i=0;i<ps.length;i++) ps[i].classList.remove('active');
+  ['nav-home','nav-shop','nav-contact'].forEach(function(n){
+    var el=$(n); if(el) el.classList.remove('active');
+  });
+  window.scrollTo(0,0);
+  var el = $('page-'+page);
+  if(el) el.classList.add('active');
+  if(page==='home') $('nav-home').classList.add('active');
+  if(page==='shop') $('nav-shop').classList.add('active');
+  if(page==='contact') $('nav-contact').classList.add('active');
+  var mn = $('mob-nav');
+  if(mn) mn.classList.remove('open');
+  if(page==='home') { renderGrid('featured-grid',[1,2,3,4]); renderGrid('popular-grid',[5,6,7,8]); }
+  if(page==='shop') renderGrid('shop-grid',[1,2,3,4,5,6,7,8]);
+  if(page==='product' && id) { curProd=getP(id); detQty=1; if(curProd) renderPD(curProd); }
+  if(page==='cart') renderCart();
+  if(page==='checkout') renderCheckout();
+}
+
+function goTo(page, id) {
+  var state = {page: page, id: id || null};
+  var url = page === 'home' ? '/' : '/' + page + (id ? '/' + id : '');
+  try { window.history.pushState(state, '', url); } catch(e) {}
+  showPage(page, id);
+}
+
+
+
+/* ── RENDER GRID ── */
+function renderGrid(gridId, ids) {
+  var el = $(gridId);
+  if(!el) return;
+  el.innerHTML = '';
+  ids.forEach(function(id) {
+    var p = getP(id);
+    if(!p) return;
+    // Card
+    var card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = (function(pid){ return function(){ goTo('product', pid); }; })(p.id);
+    // Image wrap
+    var imgWrap = document.createElement('div');
+    imgWrap.className = 'prod-img-wrap';
+    if(p.badge) {
+      var badge = document.createElement('div');
+      badge.className = 'p-badge ' + p.bc;
+      badge.textContent = p.badge;
+      imgWrap.appendChild(badge);
+    }
+    imgWrap.appendChild(makeImg(p.imgs[0], p.fb));
+    card.appendChild(imgWrap);
+    // Body
+    var body = document.createElement('div');
+    body.className = 'prod-body';
+    var oldPriceHTML = p.old ? '<span class="price-old">$'+p.old.toFixed(2)+'</span>' : '';
+    body.innerHTML = '<div class="p-cat">'+p.cat+'</div>'
+      + '<div class="p-name">'+p.name+'</div>'
+      + '<div class="p-foot"><div>'+oldPriceHTML+'<span class="price-now">$'+p.price.toFixed(2)+'</span></div>'
+      + '<button class="add-btn" id="ab-'+gridId+'-'+p.id+'">+ Add</button></div>';
+    card.appendChild(body);
+    el.appendChild(card);
+    // Wire up add btn
+    var addBtn = $('ab-'+gridId+'-'+p.id);
+    if(addBtn) {
+      addBtn.onclick = (function(pid, btn){ return function(e){
+        e.stopPropagation();
+        addToCart(pid);
+        btn.textContent = '✓ Added'; btn.classList.add('added');
+        setTimeout(function(){ btn.textContent = '+ Add'; btn.classList.remove('added'); }, 1400);
+      }; })(p.id, addBtn);
+    }
+  });
+}
+
+/* ── RENDER PRODUCT DETAIL ── */
+function renderPD(p) {
+  $('pd-breadcrumb').textContent = '← ' + p.name;
+  $('pd-cat').textContent = p.cat;
+  $('pd-name').textContent = p.name;
+  $('pd-price').textContent = '$' + p.price.toFixed(2);
+  $('det-qty').textContent = '1';
+  var oldEl = $('pd-old'), saveEl = $('pd-save');
+  if(p.old){ oldEl.textContent='$'+p.old.toFixed(2); oldEl.style.display=''; saveEl.textContent='Save '+Math.round((p.old-p.price)/p.old*100)+'%'; saveEl.style.display=''; }
+  else { oldEl.style.display='none'; saveEl.style.display='none'; }
+  // Main image
+  var main = $('pd-main');
+  main.innerHTML = '';
+  main.appendChild(makeImg(p.imgs[0], p.fb));
+  // Thumbnails
+  var tc = $('pd-thumbs');
+  tc.innerHTML = '';
+  if(p.imgs.length > 1) {
+    p.imgs.slice(0,5).forEach(function(src, i) {
+      var thumb = document.createElement('div');
+      thumb.className = 'pd-thumb' + (i===0 ? ' active' : '');
+      var timg = document.createElement('img');
+      timg.src = src; timg.alt = '';
+      timg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block';
+      thumb.appendChild(timg);
+      thumb.onclick = (function(s, th){ return function(){
+        main.innerHTML = '';
+        main.appendChild(makeImg(s, p.fb));
+        document.querySelectorAll('.pd-thumb').forEach(function(t){ t.classList.remove('active'); });
+        th.classList.add('active');
+      }; })(src, thumb);
+      tc.appendChild(thumb);
+    });
+  }
+  // Description
+  var d = p.desc;
+  $('pd-desc').innerHTML =
+    '<div class="desc-block"><h4>Benefits</h4><ul>'+d.b.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'
+    +'<div class="desc-block"><h4>Specifications</h4><ul>'+d.s.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'
+    +'<div class="desc-block"><h4>Package Includes</h4><ul>'+d.i.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'
+    +'<div class="desc-block"><h4>Perfect For</h4><ul>'+d.p.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>';
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(function(b,i){ b.classList.toggle('active',i===0); });
+  document.querySelectorAll('.tab-pane').forEach(function(p,i){ p.classList.toggle('active',i===0); });
+  // Related
+  var others = products.filter(function(pr){return pr.id!==p.id;}).map(function(pr){return pr.id;});
+  renderGrid('related-grid', others);
+  // Pay logos
+  injectPay('pd-pay-logos');
+}
+
+/* ── CART LOGIC ── */
+function addToCart(id) {
+  var p = getP(id), found = false;
+  for(var i=0;i<cart.length;i++) if(cart[i].id===id){ cart[i].qty++; found=true; break; }
+  if(!found) cart.push({id:p.id, name:p.name, price:p.price, img:p.imgs[0], fb:p.fb, qty:1});
+  updateCount();
+}
+function removeFromCart(id) {
+  cart = cart.filter(function(i){ return i.id!==id; });
+  updateCount(); renderCart();
+}
+function changeQty(id, d) {
+  for(var i=0;i<cart.length;i++) if(cart[i].id===id){ cart[i].qty+=d; if(cart[i].qty<=0) cart.splice(i,1); break; }
+  updateCount(); renderCart();
+}
+
+/* ── RENDER CART ── */
+function renderCart() {
+  var el = $('cart-grid');
+  if(!el) return;
+  el.innerHTML = '';
+
+  // ── Empty state ──
+  if(!cart.length) {
+    var empty = document.createElement('div');
+    empty.style.cssText = 'grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)';
+    empty.innerHTML = '<div style="font-size:64px;margin-bottom:16px">&#128722;</div>'
+      + '<h3 style="font-family:Playfair Display,serif;font-size:22px;margin-bottom:8px;color:var(--ink)">Your cart is empty</h3>'
+      + '<p style="margin-bottom:24px">Discover our kitchen gadgets!</p>';
+    var shopBtn = document.createElement('button');
+    shopBtn.className = 'btn btn-red';
+    shopBtn.textContent = 'Shop Now →';
+    shopBtn.onclick = function(){ goTo('shop'); };
+    empty.appendChild(shopBtn);
+    el.appendChild(empty);
+    return;
+  }
+
+  // ── Items box ──
+  var total = getTotal();
+  var box = document.createElement('div');
+  box.className = 'cart-box';
+  var head = document.createElement('div');
+  head.className = 'cart-box-head';
+  head.innerHTML = '<h1>Your Cart</h1><span>'+getCount()+' item'+(getCount()!==1?'s':'')+'</span>';
+  box.appendChild(head);
+
+  cart.forEach(function(it) {
+    var row = document.createElement('div');
+    row.className = 'cart-item';
+    var imgDiv = document.createElement('div');
+    imgDiv.className = 'ci-img';
+    if(it.img) imgDiv.appendChild(makeImg(it.img, it.fb));
+    else imgDiv.textContent = it.fb;
+    row.appendChild(imgDiv);
+    var info = document.createElement('div');
+    info.className = 'ci-info';
+    info.innerHTML = '<div class="ci-name">'+it.name+'</div>'
+      + '<div class="ci-price">$'+(it.price*it.qty).toFixed(2)+'</div>';
+    var qtyRow = document.createElement('div');
+    qtyRow.className = 'ci-qty';
+    var minus = document.createElement('div'); minus.className='cq-btn'; minus.textContent='−';
+    minus.onclick = (function(id){return function(){changeQty(id,-1);};})(it.id);
+    var valEl = document.createElement('span'); valEl.className='cq-val'; valEl.textContent=it.qty;
+    var plus = document.createElement('div'); plus.className='cq-btn'; plus.textContent='+';
+    plus.onclick = (function(id){return function(){changeQty(id,1);};})(it.id);
+    qtyRow.appendChild(minus); qtyRow.appendChild(valEl); qtyRow.appendChild(plus);
+    info.appendChild(qtyRow);
+    row.appendChild(info);
+    var rm = document.createElement('button');
+    rm.className = 'ci-rm'; rm.innerHTML = '&#128465;'; rm.title = 'Remove';
+    rm.onclick = (function(id){return function(){removeFromCart(id);};})(it.id);
+    row.appendChild(rm);
+    box.appendChild(row);
+  });
+  el.appendChild(box);
+
+  // ── Summary ──
+  var sum = document.createElement('div');
+  sum.className = 'cart-sum';
+
+  var sumHead = document.createElement('div');
+  sumHead.className = 'cs-head';
+  sumHead.innerHTML = '&#128717; Order Summary';
+  sum.appendChild(sumHead);
+
+  var sumBody = document.createElement('div');
+  sumBody.className = 'cs-body';
+
+  // Item rows
+  var rowsHTML = cart.map(function(it){
+    return '<div class="sum-row"><span>'+it.name+' ×'+it.qty+'</span><span>$'+(it.price*it.qty).toFixed(2)+'</span></div>';
+  }).join('');
+
+  sumBody.innerHTML = rowsHTML
+    + '<hr class="sum-divider">'
+    + '<div class="sum-row"><span>Subtotal</span><span>$'+total.toFixed(2)+'</span></div>'
+    + '<div class="sum-row"><span>Shipping</span><span style="color:var(--green);font-weight:600">Free</span></div>'
+    + '<div class="sum-total"><span>Total</span><span>$'+total.toFixed(2)+'</span></div>';
+
+  // Secure + pay logos (set before appending buttons to avoid innerHTML+= destroying handlers)
+  var secureDiv = document.createElement('div');
+  secureDiv.className = 'cs-secure';
+  secureDiv.innerHTML = '&#128274; Secure SSL Encrypted Checkout';
+
+  var payDiv = document.createElement('div');
+  payDiv.className = 'cs-pay';
+  payDiv.innerHTML = PAY_HTML;
+
+  // Checkout button
+  var coBtn = document.createElement('button');
+  coBtn.className = 'co-btn';
+  coBtn.textContent = 'Proceed to Checkout →';
+  coBtn.onclick = function(){ goTo('checkout'); };
+
+  // Continue shopping
+  var contBtn = document.createElement('button');
+  contBtn.className = 'cont-btn';
+  contBtn.textContent = 'Continue Shopping';
+  contBtn.onclick = function(){ goTo('shop'); };
+
+  sum.appendChild(sumBody);
+  sum.appendChild(coBtn);
+  sum.appendChild(contBtn);
+  sum.appendChild(secureDiv);
+  sum.appendChild(payDiv);
+  el.appendChild(sum);
+}
+
+/* ── CHECKOUT ── */
+function renderCheckout() {
+  if(!cart.length){ goTo('shop'); toast('Your cart is empty'); return; }
+  $('confirm-screen').style.display = 'none';
+  $('checkout-form').style.display = 'block';
+  var total=getTotal();
+  $('co-sub').textContent = '$'+total.toFixed(2);
+  $('co-ship').textContent = 'Free';
+  $('co-total').textContent = '$'+total.toFixed(2);
+  $('co-lines').innerHTML = cart.map(function(it){
+    var imgHtml = it.img
+      ? '<img src="'+it.img+'" alt="" style="width:44px;height:44px;object-fit:cover;border-radius:6px;border:1px solid var(--border);flex-shrink:0">'
+      : '<div style="width:44px;height:44px;border-radius:6px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+it.fb+'</div>';
+    return '<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)">'
+      +'<div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">'
+      +imgHtml
+      +'<span style="font-size:12px;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">'+it.name+' &times;'+it.qty+'</span>'
+      +'</div>'
+      +'<span style="font-weight:600;font-size:13px;white-space:nowrap;flex-shrink:0">$'+(it.price*it.qty).toFixed(2)+'</span>'
+      +'</div>';
+  }).join('');
+  var tc = $('tc-check'); if(tc) tc.checked = false;
+  injectPay('co-pay-logos');
+}
+function placeOrder() {
+  var tc = $('tc-check');
+  if(!tc||!tc.checked){ toast('Please accept the Terms & Conditions'); return; }
+  // Processing animation
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(255,255,255,.96);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px';
+  overlay.innerHTML = '<div style="width:52px;height:52px;border:4px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite"></div>'
+    + '<div style="text-align:center"><p style="font-weight:700;font-size:16px;margin-bottom:6px;color:var(--ink)">Processing your order&hellip;</p>'
+    + '<p style="color:var(--muted);font-size:13px">Please do not close or refresh this page</p></div>';
+  if(!document.getElementById('spin-kf')){
+    var sk=document.createElement('style'); sk.id='spin-kf';
+    sk.textContent='@keyframes spin{to{transform:rotate(360deg)}}';
+    document.head.appendChild(sk);
+  }
+  document.body.appendChild(overlay);
+  setTimeout(function(){
+    var num = '#KA-'+Math.floor(100000+Math.random()*900000);
+    $('confirm-num').textContent = num;
+    $('checkout-form').style.display = 'none';
+    $('confirm-screen').style.display = 'block';
+    cart = []; updateCount(); window.scrollTo(0,0);
+    document.body.removeChild(overlay);
+  }, 2800);
+}
+
+/* ── WIRE UP ALL EVENTS ── */
+function wire() {
+  // Logo & nav
+  var _el_logo=$('logo'); if(_el_logo) _el_logo.onclick = function(){ goTo('home'); };
+  var _el_nav_home=$('nav-home'); if(_el_nav_home) _el_nav_home.onclick = function(){ goTo('home'); };
+  var _el_nav_shop=$('nav-shop'); if(_el_nav_shop) _el_nav_shop.onclick = function(){ goTo('shop'); };
+  var _el_nav_contact=$('nav-contact'); if(_el_nav_contact) _el_nav_contact.onclick = function(){ goTo('contact'); };
+  // Cart btn
+  var _el_cart_btn=$('cart-btn'); if(_el_cart_btn) _el_cart_btn.onclick = function(){ goTo('cart'); };
+  // Hamburger
+  var _el_ham=$('ham'); if(_el_ham) _el_ham.onclick = function(){
+    var mn=$('mob-nav'); if(mn) mn.classList.toggle('open');
+  };
+  // Mobile nav
+  ['home','shop','contact','privacy','terms'].forEach(function(p){
+    var el=$('mn-'+p); if(el) el.onclick=function(){ goTo(p); };
+  });
+  // Hero btns
+  var _el_hero_shop=$('hero-shop'); if(_el_hero_shop) _el_hero_shop.onclick = function(){ goTo('shop'); };
+  var _el_hero_all=$('hero-all'); if(_el_hero_all) _el_hero_all.onclick = function(){ goTo('shop'); };
+  // Hero image — use first product image
+  var hi = $('hero-img');
+  if(hi) hi.appendChild(makeImg(products[0].imgs[0], products[0].fb));
+  // Filter pills
+  var pills = document.querySelectorAll('#filter-pills button');
+  pills.forEach(function(pill) {
+    pill.onclick = function() {
+      pills.forEach(function(p){ p.classList.remove('active'); });
+      pill.classList.add('active');
+      var tag = pill.getAttribute('data-tag');
+      var ids = tag==='all' ? [1,2,3,4,5,6,7,8] : products.filter(function(p){return p.tag===tag;}).map(function(p){return p.id;});
+      renderGrid('shop-grid', ids);
+    };
+  });
+  // PD qty
+  var _el_qty_minus=$('qty-minus'); if(_el_qty_minus) _el_qty_minus.onclick = function(){ detQty=Math.max(1,detQty-1); $('det-qty').textContent=detQty; };
+  var _el_qty_plus=$('qty-plus'); if(_el_qty_plus) _el_qty_plus.onclick = function(){ detQty++; $('det-qty').textContent=detQty; };
+  var _el_pd_add_btn=$('pd-add-btn'); if(_el_pd_add_btn) _el_pd_add_btn.onclick = function(){
+    if(!curProd) return;
+    for(var i=0;i<detQty;i++) addToCart(curProd.id);
+    updateCount();
+    toast('Added to cart!');
+  };
+  // PD breadcrumb
+  var _el_pd_breadcrumb=$('pd-breadcrumb'); if(_el_pd_breadcrumb) _el_pd_breadcrumb.onclick = function(){ goTo('shop'); };
+  // Tab buttons
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.onclick = function() {
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('act'); b.classList.remove('active'); });
+      document.querySelectorAll('.tab-pane').forEach(function(p){ p.classList.remove('act'); p.classList.remove('active'); });
+      btn.classList.add('act'); btn.classList.add('active');
+      var pane = $('tab-'+btn.getAttribute('data-tab'));
+      if(pane){ pane.classList.add('act'); pane.classList.add('active'); }
+    };
+  });
+  // Checkout
+  var _el_place_order_btn=$('place-order-btn'); if(_el_place_order_btn) _el_place_order_btn.onclick = placeOrder;
+  var _el_confirm_shop=$('confirm-shop'); if(_el_confirm_shop) _el_confirm_shop.onclick = function(){ goTo('home'); };
+  var _el_tc_terms_lnk=$('tc-terms-lnk'); if(_el_tc_terms_lnk) _el_tc_terms_lnk.onclick = function(){ goTo('terms'); };
+  var _el_tc_priv_lnk=$('tc-priv-lnk'); if(_el_tc_priv_lnk) _el_tc_priv_lnk.onclick = function(){ goTo('privacy'); };
+  // CC formatting
+  $('cc-num').oninput = function(){ var v=this.value.replace(/\D/g,'').substring(0,16); this.value=v.replace(/(.{4})/g,'$1 ').trim(); };
+  $('cc-exp').oninput = function(){ var v=this.value.replace(/\D/g,''); if(v.length>=2) v=v.substring(0,2)+' / '+v.substring(2,4); this.value=v; };
+  // Contact
+  var _el_contact_send=$('contact-send'); if(_el_contact_send) _el_contact_send.onclick = function(){ toast('Message sent! We reply within 24h.'); };
+  // Footer links
+  [['fl-shop','shop'],['fl-home','home'],['fl-privacy','privacy'],['fl-terms','terms'],['fl-contact','contact']].forEach(function(pair){
+    var el=$(pair[0]); if(el) el.onclick=function(){ goTo(pair[1]); };
+  });
+  // Coupon panel
+  var cl = $('coupon-lnk');
+  if(cl) cl.onclick = function(){
+    var p = $('coupon-panel');
+    if(p) p.style.display = p.style.display==='none'?'block':'none';
+  };
+  var ca = $('coupon-apply');
+  if(ca) ca.onclick = function(){
+    var v = $('coupon-input')?$('coupon-input').value.trim():'';
+    var m = $('coupon-msg');
+    if(!v){if(m) m.textContent='Please enter a coupon code.'; return;}
+    if(m){m.style.color='var(--muted)'; m.textContent='Checking...';}
+    setTimeout(function(){ if(m){m.style.color='#991B1B'; m.textContent='Invalid or expired coupon code.';} }, 800);
+  };
+  // Pay logos
+  injectPay('footer-pay');
+  injectPay('pd-pay-logos');
+  injectPay('co-pay-logos');
+}
+
+/* ── INIT ── */
+wire();
+goTo('home');
+
+})();
+
+/* ── COUNTRY HANDLER — global (called from onchange) ── */
+window.addEventListener('popstate', function(e) {
+  if(e.state && e.state.page) {
+    showPage(e.state.page, e.state.id || undefined);
+  } else {
+    try { window.history.replaceState({page:'home',id:null}, '', '/'); } catch(e) {}
+showPage('home');
+  }
+});
+
+window.handleCountry = function(sel) {
+  var val = sel.value;
+  var sf = document.getElementById('state-field');
+  var sl = document.getElementById('state-label');
+  if(!sf) return;
+  sf.style.display = '';
+  var ss = document.getElementById('co-state');
+  if(!ss) return;
+
+  var REGIONS = {
+    US: {lbl:"State",r:["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]},
+    CA: {lbl:"Province",r:["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Northwest Territories","Nova Scotia","Nunavut","Ontario","Prince Edward Island","Quebec","Saskatchewan","Yukon"]},
+    AU: {lbl:"State",r:["Australian Capital Territory","New South Wales","Northern Territory","Queensland","South Australia","Tasmania","Victoria","Western Australia"]},
+    FR: {lbl:"Region",r:["Auvergne-Rhone-Alpes","Bourgogne-Franche-Comte","Bretagne","Centre-Val de Loire","Corse","Grand Est","Hauts-de-France","Ile-de-France","Normandie","Nouvelle-Aquitaine","Occitanie","Pays de la Loire","Provence-Alpes-Cote d Azur"]},
+    DE: {lbl:"Bundesland",r:["Baden-Wurttemberg","Bavaria","Berlin","Brandenburg","Bremen","Hamburg","Hesse","Lower Saxony","Mecklenburg-Vorpommern","North Rhine-Westphalia","Rhineland-Palatinate","Saarland","Saxony","Saxony-Anhalt","Schleswig-Holstein","Thuringia"]},
+    IT: {lbl:"Regione",r:["Abruzzo","Aosta Valley","Apulia","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli Venezia Giulia","Lazio","Liguria","Lombardy","Marche","Molise","Piedmont","Sardinia","Sicily","Trentino-South Tyrol","Tuscany","Umbria","Veneto"]},
+    ES: {lbl:"Comunidad",r:["Andalusia","Aragon","Asturias","Balearic Islands","Basque Country","Canary Islands","Cantabria","Castile and Leon","Castile-La Mancha","Catalonia","Ceuta","Extremadura","Galicia","La Rioja","Madrid","Melilla","Murcia","Navarre","Valencia"]},
+    BE: {lbl:"Province",r:["Antwerp","East Flanders","West Flanders","Flemish Brabant","Walloon Brabant","Hainaut","Liege","Luxembourg","Namur","Brussels-Capital"]},
+    NL: {lbl:"Provincie",r:["Drenthe","Flevoland","Friesland","Gelderland","Groningen","Limburg","North Brabant","North Holland","Overijssel","South Holland","Utrecht","Zeeland"]},
+    CH: {lbl:"Canton",r:["Aargau","Appenzell Ausserrhoden","Appenzell Innerrhoden","Basel-City","Basel-Country","Bern","Fribourg","Geneva","Glarus","Graubunden","Jura","Lucerne","Neuchatel","Nidwalden","Obwalden","Schaffhausen","Schwyz","Solothurn","St. Gallen","Thurgau","Ticino","Uri","Valais","Vaud","Zug","Zurich"]},
+    AT: {lbl:"Bundesland",r:["Burgenland","Carinthia","Lower Austria","Salzburg","Styria","Tyrol","Upper Austria","Vienna","Vorarlberg"]},
+    PT: {lbl:"Distrito",r:["Aveiro","Beja","Braga","Braganca","Castelo Branco","Coimbra","Evora","Faro","Guarda","Leiria","Lisboa","Portalegre","Porto","Santarem","Setubal","Viana do Castelo","Vila Real","Viseu","Azores","Madeira"]},
+    SE: {lbl:"County",r:["Blekinge","Dalarna","Gavleborg","Gotland","Halland","Jamtland","Jonkoping","Kalmar","Kronoberg","Norrbotten","Orebro","Ostergotland","Skane","Sodermanland","Stockholm","Uppsala","Varmland","Vasterbotten","Vasternorrland","Vastmanland","Vastra Gotaland"]},
+    NO: {lbl:"Fylke",r:["Agder","Innlandet","More og Romsdal","Nordland","Oslo","Rogaland","Troms og Finnmark","Trondelag","Vestfold og Telemark","Vestland","Viken"]},
+    DK: {lbl:"Region",r:["Capital Region","Central Denmark","North Denmark","Southern Denmark","Zealand"]},
+    FI: {lbl:"Region",r:["Aland","Central Finland","Central Ostrobothnia","Kainuu","Kymenlaakso","Lapland","North Karelia","North Ostrobothnia","North Savo","Ostrobothnia","Paijat-Hame","Pirkanmaa","Satakunta","South Karelia","South Ostrobothnia","South Savo","Southwest Finland","Tavastia Proper","Uusimaa"]},
+    PL: {lbl:"Voivodeship",r:["Greater Poland","Holy Cross","Kuyavian-Pomeranian","Lesser Poland","Lodz","Lower Silesian","Lublin","Lubusz","Masovian","Opole","Podlaskie","Pomeranian","Silesian","Subcarpathian","Warmian-Masurian","West Pomeranian"]},
+    CZ: {lbl:"Region",r:["Central Bohemia","Hradec Kralove","Karlovy Vary","Liberec","Moravian-Silesian","Olomouc","Pardubice","Plzen","Prague","South Bohemia","South Moravia","Usti nad Labem","Vysocina","Zlin"]},
+    RO: {lbl:"Judet",r:["Alba","Arad","Arges","Bacau","Bihor","Bistrita-Nasaud","Botosani","Braila","Brasov","Bucuresti","Buzau","Calarasi","Caras-Severin","Cluj","Constanta","Covasna","Dambovita","Dolj","Galati","Giurgiu","Gorj","Harghita","Hunedoara","Ialomita","Iasi","Ilfov","Maramures","Mehedinti","Mures","Neamt","Olt","Prahova","Salaj","Satu Mare","Sibiu","Suceava","Teleorman","Timis","Tulcea","Vaslui","Valcea","Vrancea"]},
+    HU: {lbl:"County",r:["Bacs-Kiskun","Baranya","Bekes","Borsod-Abauj-Zemplen","Budapest","Csongrad-Csanad","Fejer","Gyor-Moson-Sopron","Hajdu-Bihar","Heves","Jasz-Nagykun-Szolnok","Komarom-Esztergom","Nograd","Pest","Somogy","Szabolcs-Szatmar-Bereg","Tolna","Vas","Veszprem","Zala"]},
+    GR: {lbl:"Region",r:["Attica","Central Greece","Central Macedonia","Crete","Eastern Macedonia and Thrace","Epirus","Ionian Islands","North Aegean","Peloponnese","South Aegean","Thessaly","Western Greece","Western Macedonia"]},
+    IE: {lbl:"Province",r:["Connacht","Leinster","Munster","Ulster"]},
+    GB: {lbl:"Region",r:["East Midlands","East of England","London","North East England","North West England","Northern Ireland","Scotland","South East England","South West England","Wales","West Midlands","Yorkshire and Humber"]},
+    NZ: {lbl:"Region",r:["Auckland","Bay of Plenty","Canterbury","Gisborne","Hawkes Bay","Manawatu-Wanganui","Marlborough","Nelson","Northland","Otago","Southland","Taranaki","Tasman","Waikato","Wellington","West Coast"]},
+    JP: {lbl:"Prefecture",r:["Aichi","Akita","Aomori","Chiba","Ehime","Fukui","Fukuoka","Fukushima","Gifu","Gunma","Hiroshima","Hokkaido","Hyogo","Ibaraki","Ishikawa","Iwate","Kagawa","Kagoshima","Kanagawa","Kochi","Kumamoto","Kyoto","Mie","Miyagi","Miyazaki","Nagano","Nagasaki","Nara","Niigata","Oita","Okayama","Okinawa","Osaka","Saga","Saitama","Shiga","Shimane","Shizuoka","Tochigi","Tokushima","Tokyo","Tottori","Toyama","Wakayama","Yamagata","Yamaguchi","Yamanashi"]},
+    KR: {lbl:"Province",r:["Busan","Chungcheongbuk-do","Chungcheongnam-do","Daegu","Daejeon","Gangwon-do","Gwangju","Gyeonggi-do","Gyeongsangbuk-do","Gyeongsangnam-do","Incheon","Jeju","Jeollabuk-do","Jeollanam-do","Sejong","Seoul","Ulsan"]},
+    SG: {lbl:"Region",r:["Central Region","East Region","North Region","North-East Region","West Region"]},
+    AE: {lbl:"Emirate",r:["Abu Dhabi","Ajman","Dubai","Fujairah","Ras Al Khaimah","Sharjah","Umm Al Quwain"]},
+    SA: {lbl:"Region",r:["Al Bahah","Al Jawf","Al Madinah","Al Qassim","Asir","Eastern Province","Hail","Jizan","Makkah","Najran","Northern Borders","Riyadh","Tabuk"]},
+    ZA: {lbl:"Province",r:["Eastern Cape","Free State","Gauteng","KwaZulu-Natal","Limpopo","Mpumalanga","North West","Northern Cape","Western Cape"]},
+    BR: {lbl:"State",r:["Acre","Alagoas","Amapa","Amazonas","Bahia","Ceara","Distrito Federal","Espirito Santo","Goias","Maranhao","Mato Grosso","Mato Grosso do Sul","Minas Gerais","Para","Paraiba","Parana","Pernambuco","Piaui","Rio de Janeiro","Rio Grande do Norte","Rio Grande do Sul","Rondonia","Roraima","Santa Catarina","Sao Paulo","Sergipe","Tocantins"]},
+    MX: {lbl:"State",r:["Aguascalientes","Baja California","Baja California Sur","Campeche","Chiapas","Chihuahua","Ciudad de Mexico","Coahuila","Colima","Durango","Guanajuato","Guerrero","Hidalgo","Jalisco","Mexico State","Michoacan","Morelos","Nayarit","Nuevo Leon","Oaxaca","Puebla","Queretaro","Quintana Roo","San Luis Potosi","Sinaloa","Sonora","Tabasco","Tamaulipas","Tlaxcala","Veracruz","Yucatan","Zacatecas"]},
+    AR: {lbl:"Province",r:["Buenos Aires","Catamarca","Chaco","Chubut","Cordoba","Corrientes","Entre Rios","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquen","Rio Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago del Estero","Tierra del Fuego","Tucuman"]},
+    CO: {lbl:"Department",r:["Amazonas","Antioquia","Arauca","Atlantico","Bogota D.C.","Bolivar","Boyaca","Caldas","Caqueta","Casanare","Cauca","Cesar","Choco","Cordoba","Cundinamarca","Guainia","Guaviare","Huila","La Guajira","Magdalena","Meta","Narino","Norte de Santander","Putumayo","Quindio","Risaralda","San Andres","Santander","Sucre","Tolima","Valle del Cauca","Vaupes","Vichada"]},
+    MA: {lbl:"Region",r:["Beni Mellal-Khenifra","Casablanca-Settat","Dakhla-Oued Ed-Dahab","Draa-Tafilalet","Fes-Meknes","Guelmim-Oued Noun","Laayoune-Sakia El Hamra","Marrakech-Safi","Oriental","Rabat-Sale-Kenitra","Souss-Massa","Tanger-Tetouan-Al Hoceima"]},
+    DZ: {lbl:"Wilaya",r:["Adrar","Ain Defla","Ain Temouchent","Algiers","Annaba","Batna","Bechar","Bejaia","Biskra","Blida","Bordj Bou Arreridj","Bouira","Boumerdes","Chlef","Constantine","Djelfa","El Bayadh","El Oued","El Tarf","Ghardaia","Guelma","Illizi","Jijel","Khenchela","Laghouat","Mascara","Medea","Mila","Mostaganem","Msila","Naama","Oran","Ouargla","Oum el Bouaghi","Relizane","Saida","Setif","Sidi Bel Abbes","Skikda","Souk Ahras","Tamanrasset","Tebessa","Tiaret","Tindouf","Tipaza","Tissemsilt","Tizi Ouzou","Tlemcen"]},
+    TN: {lbl:"Governorate",r:["Ariana","Beja","Ben Arous","Bizerte","Gabes","Gafsa","Jendouba","Kairouan","Kasserine","Kebili","Kef","Mahdia","Manouba","Medenine","Monastir","Nabeul","Sfax","Sidi Bouzid","Siliana","Sousse","Tataouine","Tozeur","Tunis","Zaghouan"]},
+    SN: {lbl:"Region",r:["Dakar","Diourbel","Fatick","Kaffrine","Kaolack","Kedougou","Kolda","Louga","Matam","Saint-Louis","Sedhiou","Tambacounda","Thies","Ziguinchor"]},
+    NG: {lbl:"State",r:["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta","Ebonyi","Edo","Ekiti","Enugu","FCT Abuja","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara"]},
+    KE: {lbl:"County",r:["Baringo","Bomet","Bungoma","Busia","Elgeyo-Marakwet","Embu","Garissa","Homa Bay","Isiolo","Kajiado","Kakamega","Kericho","Kiambu","Kilifi","Kirinyaga","Kisii","Kisumu","Kitui","Kwale","Laikipia","Lamu","Machakos","Makueni","Mandera","Marsabit","Meru","Migori","Mombasa","Muranga","Nairobi","Nakuru","Nandi","Narok","Nyamira","Nyandarua","Nyeri","Samburu","Siaya","Taita-Taveta","Tana River","Tharaka-Nithi","Trans-Nzoia","Turkana","Uasin Gishu","Vihiga","Wajir","West Pokot"]}
+  };
+
+  var data = REGIONS[val];
+  if(data) {
+    sl.textContent = data.lbl;
+    ss.innerHTML = '<option value="">Select ' + data.lbl.toLowerCase() + '</option>'
+      + data.r.map(function(r){ return '<option>' + r + '</option>'; }).join('');
+  } else {
+    sl.textContent = 'State / Region';
+    ss.innerHTML = '<option value="">Not required</option>';
+  }
+};;;
+
+</script>
+</body>
+</html>
