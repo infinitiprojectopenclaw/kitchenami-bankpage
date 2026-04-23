@@ -839,7 +839,13 @@ var PAY_HTML = [
 
 /* ── PRODUCTS ── */
 /* ⚠️ 8 produits triés par prix CROISSANT (règle compliance MidsUP gadget) */
-var C = 'imgs/';
+// Preserve GitHub Pages subdirectory base path even after pushState to '/'
+var BASE_PATH = (function(){
+  var p = window.location.pathname;
+  p = p.replace(/\/[^\/]*$/, '/');
+  return p;
+})();
+var C = BASE_PATH + 'imgs/';
 
 var products = [
   {
